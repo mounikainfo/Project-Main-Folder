@@ -18,3 +18,12 @@ variable "ssh_ip" {}
 # s3 variables
 variable "env_file_bucket_name" {}
 variable "env_file_name" {}
+
+
+# eks variables
+
+variable "version" {}
+variable "public_access_cidrs1" {}
+variable "service_ipv4" {
+  
+}
