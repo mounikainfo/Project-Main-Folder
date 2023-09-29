@@ -45,8 +45,8 @@ module "security_group" {
 
 # create s3 bucket
 module "s3_bucket" {
-  source               = "git@github.com:mounikainfo/terraform-modules.git//s3"
+  source               = "git@github.com:mounikainfo/Project-Module.git//s3"
   project_name         = local.project_name
-  env_file_bucket_name = var.env_file_bucket_name
-  env_file_name        = var.env_file_name
+  env_file_bucket_name1 = var.env_file_bucket_name
+  env_file_name1        = var.env_file_name
 }
