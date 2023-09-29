@@ -3,6 +3,11 @@ variable "region" {}
 variable "project_name" {}
 variable "environment" {}
 
+#provider variables
+
+variable "profile" {}
+variable "config_context" {}
+
 # vpc variables
 variable "vpc_cidr" {}
 variable "public_subnet_az1_cidr" {}

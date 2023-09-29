@@ -87,6 +87,6 @@ resource "helm_release" "loadbalancer_controller" {
   }
   set {
     name  = "clusterName"
-    value = module.myeks.cluster_name
+    value = var.cluster_name
   }
 }
