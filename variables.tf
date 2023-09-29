@@ -22,8 +22,7 @@ variable "env_file_name" {}
 
 # eks variables
 
-variable "my_version" {}
-variable "public_access_cidrs1" {}
-variable "service_ipv4" {
-  
-}
+variable "cluster_name" {}
+variable "role_arn" {}
+variable "cluster_version" {}
+
