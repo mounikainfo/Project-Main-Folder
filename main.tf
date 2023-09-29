@@ -60,6 +60,6 @@ module "myeks" {
   cluster_version = var.cluster_version
   private_app_subnet_az1_id = module.vpc.private_app_subnet_az1_id
   private_app_subnet_az2_id = module.vpc.private_app_subnet_az2_id
-  sec = module.security_group.app_server_security_group_id
-
+  # sec = [module.security_group.app_server_security_group_id]
+  sec = var.sec
 }

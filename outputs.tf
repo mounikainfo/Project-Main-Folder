@@ -9,3 +9,6 @@ output "cluster_iam_role_arn" {
     value = aws_iam_role.eks_master_role.arn
 }
 
+output "my-sec" {
+  value = module.security_group.app_server_security_group_id
+}

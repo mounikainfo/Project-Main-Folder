@@ -24,3 +24,6 @@ variable "env_file_name" {}
 
 variable "cluster_name" {}
 variable "cluster_version" {}
+variable "sec" {
+  
+}
