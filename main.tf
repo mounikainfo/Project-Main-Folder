@@ -56,9 +56,10 @@ module "s3_bucket" {
 module "myeks" {
   source                    = "git@github.com:mounikainfo/Project-Module.git//eks"
   cluster_name = var.cluster_name
-  role_arn = var.role_arn
+  role_arn = aws_iam_role.eks_master_role.arn
   cluster_version = var.cluster_version
   private_app_subnet_az1_id = module.vpc.private_app_subnet_az1_id
   private_app_subnet_az2_id = module.vpc.private_app_subnet_az2_id
+  sec = module.security_group.app_server_security_group_id
 
 }

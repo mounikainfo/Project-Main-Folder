@@ -23,6 +23,4 @@ variable "env_file_name" {}
 # eks variables
 
 variable "cluster_name" {}
-variable "role_arn" {}
 variable "cluster_version" {}
-
