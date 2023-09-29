@@ -62,10 +62,4 @@ module "myeks" {
   private_app_subnet_az2_id = module.vpc.private_app_subnet_az2_id
   # sec = [module.security_group.app_server_security_group_id]
   sec = var.sec
-  # Enable EKS Cluster Control Plane Logging
-  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
-  depends_on = [
-    aws_iam_role_policy_attachment.eks_AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.eks_AmazonEKSVPCResourceController,
-  ]
 }
