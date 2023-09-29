@@ -24,6 +24,15 @@ variable "env_file_name" {}
 
 variable "cluster_name" {}
 variable "cluster_version" {}
-variable "sec" {
-  
-}
+variable "sec" {}
+
+# node group variables
+
+variable "node_group_name" {}
+variable "capacity_type" {}
+variable "ami_type" {}
+variable "instance_types" {}
+variable "desired_size" {}
+variable "max_size" {}
+variable "min_size" {}
+variable "max_unavailable" {}

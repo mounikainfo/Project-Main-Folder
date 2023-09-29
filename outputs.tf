@@ -12,3 +12,7 @@ output "cluster_iam_role_arn" {
 output "my-sec" {
   value = module.security_group.app_server_security_group_id
 }
+
+output "node-role" {
+    value = aws_iam_role.eks_nodegroup_role.arn
+}
