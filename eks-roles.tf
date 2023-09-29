@@ -61,3 +61,10 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryRea
   role       = aws_iam_role.worker-role.name
 }
 
+# Enable EKS Cluster Control Plane Logging
+  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+
+  depends_on = [
+    aws_iam_role_policy_attachment.eks_AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.eks_AmazonEKSVPCResourceController,
+  ]
