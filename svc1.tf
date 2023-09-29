@@ -3,7 +3,7 @@ resource "kubernetes_service" "service1" {
     name = "webappsvc1"
   }
   spec {
-    type = "LoadBalancer"
+    type = "ClusterIP"
     selector = {
       test = "webapp1"
     }
