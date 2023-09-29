@@ -16,3 +16,15 @@ output "my-sec" {
 output "node-role" {
     value = aws_iam_role.eks_nodegroup_role.arn
 }
+
+output "lbc_role" {
+  value = aws_iam_role.lbc_iam_role.name
+}
+
+output "lbc_role_arn" {
+  value = aws_iam_role.lbc_iam_role.arn
+}
+
+output "lbc_iam_policy" {
+  value = aws_iam_policy.lbc_iam_policy.arn
+}
