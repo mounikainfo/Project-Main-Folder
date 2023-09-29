@@ -14,3 +14,7 @@ variable "private_data_subnet_az2_cidr" {}
 
 # security groups variables
 variable "ssh_ip" {}
+
+# s3 variables
+variable "env_file_bucket_name" {}
+variable "env_file_name" {}
