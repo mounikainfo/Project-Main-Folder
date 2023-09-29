@@ -28,3 +28,12 @@ output "lbc_role_arn" {
 output "lbc_iam_policy" {
   value = aws_iam_policy.lbc_iam_policy.arn
 }
+
+output "lbc_helm_metadata" {
+  value       = helm_release.loadbalancer_controller.metadata
+}
+
+output "identity"  { 
+  value = module.myeks.identity
+}
+
