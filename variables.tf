@@ -22,7 +22,7 @@ variable "env_file_name" {}
 
 # eks variables
 
-variable "version" {}
+variable "my_version" {}
 variable "public_access_cidrs1" {}
 variable "service_ipv4" {
   

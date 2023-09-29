@@ -57,7 +57,7 @@ module "myeks" {
   source                    = "git@github.com:mounikainfo/Project-Module.git//eks"
   private_app_subnet_az1_id = module.vpc.private_app_subnet_az1_id
   private_app_subnet_az2_id = module.vpc.private_app_subnet_az2_id
-  version = var.version
+  my_version = var.my_version
   public_access_cidrs1 = var.public_access_cidrs1
   service_ipv4 = var.service_ipv4
 }
