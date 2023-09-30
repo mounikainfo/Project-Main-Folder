@@ -89,6 +89,7 @@ resource "helm_release" "loadbalancer_controller" {
     name  = "clusterName"
     value = var.cluster_name
   }
+  load_balancer_type = "application"
 }
 
 
