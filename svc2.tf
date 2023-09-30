@@ -1,9 +1,9 @@
-resource "kubernetes_service" "service1" {
+resource "kubernetes_service" "service2" {
   metadata {
-    name = "webappsvc1"
+    name = "webappsvc2"
   }
   spec {
-    type = "LoadBalancer"
+    type = "ClusterIP"
     selector = {
       test = "webapp1"
     }
