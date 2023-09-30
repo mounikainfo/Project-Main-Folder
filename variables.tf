@@ -46,3 +46,8 @@ variable "max_unavailable" {}
 # oidc variables
 
 variable "thumbprint_list" {}
+
+
+
+# alb variables
+variable "target_type" {}
