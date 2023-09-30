@@ -55,3 +55,6 @@ variable "alternative_names" {
 
 # alb variables
 variable "target_type" {}
+
+# route-53 variables
+variable "record_name" {}   

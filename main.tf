@@ -104,4 +104,19 @@ module "application_load_balancer" {
   certificate_arn       = module.ssl_certificate.certificate_arn
 }
 
+# create records in route53
+module "route_53" {
+  source                             = "git@github.com:mounikainfo/Project-Module.git//route-53"
+  domain_name                        = module.ssl_certificate.domain_name
+  record_name                        = var.record_name
+  application_load_balancer_dns_name = module.application_load_balancer.application_load_balancer_dns_name
+  application_load_balancer_zone_id  = module.application_load_balancer.application_load_balancer_zone_id
+}
+
+# print the website url
+output "website_url" {
+  value = join("", ["https://", var.record_name, ".", var.domain_name])
+}
+
+ 
 
