@@ -62,6 +62,11 @@ module "myeks" {
   private_app_subnet_az2_id = module.vpc.private_app_subnet_az2_id
   # sec = [module.security_group.app_server_security_group_id]
   sec = var.sec
+
+  # oidc variables
+
+  thumbprint_list = var.thumbprint_list
+
   # nodegroup variables
   node_group_name = var.node_group_name
   node_role_arn =  aws_iam_role.eks_nodegroup_role.arn
