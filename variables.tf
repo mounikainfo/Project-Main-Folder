@@ -47,6 +47,10 @@ variable "max_unavailable" {}
 
 variable "thumbprint_list" {}
 
+#acm variables
+variable "domain_name" {}
+variable "alternative_names" {
+}
 
 
 # alb variables

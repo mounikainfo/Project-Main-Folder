@@ -84,9 +84,16 @@ module "myeks" {
   ]
 }
 
+# request ssl certificate
+module "ssl_certificate" {
+  source            = "git@github.com:mounikainfo/Project-Module.git//acm"
+  domain_name       = var.domain_name
+  alternative_names = var.alternative_names
+}
+
 # create application load balancer
 module "application_load_balancer" {
-  source                = "git@github.com:mounikainfo/terraform-modules.git//alb"
+  source                = "git@github.com:mounikainfo/Project-Module.git//alb"
   project_name          = local.project_name
   environment           = local.environment
   alb_security_group_id = module.security_group.alb_security_group_id
@@ -96,3 +103,5 @@ module "application_load_balancer" {
   vpc_id                = module.vpc.vpc_id
   certificate_arn       = module.ssl_certificate.certificate_arn
 }
+
+
