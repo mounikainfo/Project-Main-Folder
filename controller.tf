@@ -90,13 +90,14 @@ resource "helm_release" "loadbalancer_controller" {
   set {
     name  = "clusterName"
     value = var.cluster_name
-  }
-  
+  }  
 }
+
+
 
 # create target group
 resource "aws_lb_target_group" "alb_target_group" {
-  name        = "lbc_target_group"
+  name        = "lbc-target-group"
   target_type = var.target_type
   port        = 80
   protocol    = "HTTP"
@@ -115,36 +116,37 @@ resource "aws_lb_target_group" "alb_target_group" {
   }
 }
 
-# create a listener on port 80 with redirect action
-resource "aws_lb_listener" "alb_http_listener" {
-  load_balancer_arn = helm_release.loadbalancer_controller.name
-  port              = 80
-  protocol          = "HTTP"
+# # create a listener on port 80 with redirect action
+# resource "aws_lb_listener" "alb_http_listener" {
+#   load_balancer_arn = helm_release.loadbalancer_controller.name
+#   port              = 80
+#   protocol          = "HTTP"
 
-  default_action {
-    type = "redirect"
+#   default_action {
+#     type = "redirect"
 
-    redirect {
-      port        = 443
-      protocol    = "HTTPS"
-      status_code = "HTTP_301"
-    }
-  }
-}
+#     redirect {
+#       port        = 443
+#       protocol    = "HTTPS"
+#       status_code = "HTTP_301"
+#     }
+#   }
+# }
 
-# create a listener on port 443 with forward action
-resource "aws_lb_listener" "alb_https_listener" {
-  load_balancer_arn = helm_release.loadbalancer_controller.name
-  port              = 443
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = var.certificate_arn
+# # create a listener on port 443 with forward action
+# resource "aws_lb_listener" "alb_https_listener" {
+#   load_balancer_arn = helm_release.loadbalancer_controller.name
+#   port              = 443
+#   protocol          = "HTTPS"
+#   ssl_policy        = "ELBSecurityPolicy-2016-08"
+#   certificate_arn   = var.certificate_arn
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.alb_target_group.arn
-  }
-}
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.alb_target_group.arn
+#   }
+# }
+
 
 
 

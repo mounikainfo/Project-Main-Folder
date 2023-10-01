@@ -63,3 +63,6 @@ variable "record_name" {}
 
 variable "lb_name" {}
 variable "namespace" {}
+
+variable "certificate_arn" {}
+
