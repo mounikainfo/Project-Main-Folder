@@ -37,4 +37,8 @@ output "identity"  {
   value = module.myeks.identity
 }
 
+output "LoadBalancer_name" {
+  value = helm_release.loadbalancer_controller.name
+}
+
 

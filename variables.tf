@@ -58,3 +58,8 @@ variable "target_type" {}
 
 # route-53 variables
 variable "record_name" {}   
+
+# lb variables
+
+variable "lb_name" {}
+variable "namespace" {}
