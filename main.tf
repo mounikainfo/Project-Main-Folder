@@ -91,32 +91,32 @@ module "ssl_certificate" {
   alternative_names = var.alternative_names
 }
 
-# create application load balancer
-module "application_load_balancer" {
-  source                = "git@github.com:mounikainfo/Project-Module.git//alb"
-  project_name          = local.project_name
-  environment           = local.environment
-  alb_security_group_id = module.security_group.alb_security_group_id
-  public_subnet_az1_id  = module.vpc.public_subnet_az1_id
-  public_subnet_az2_id  = module.vpc.public_subnet_az2_id
-  target_type           = var.target_type
-  vpc_id                = module.vpc.vpc_id
-  certificate_arn       = module.ssl_certificate.certificate_arn
-}
+# # create application load balancer
+# module "application_load_balancer" {
+#   source                = "git@github.com:mounikainfo/Project-Module.git//alb"
+#   project_name          = local.project_name
+#   environment           = local.environment
+#   alb_security_group_id = module.security_group.alb_security_group_id
+#   public_subnet_az1_id  = module.vpc.public_subnet_az1_id
+#   public_subnet_az2_id  = module.vpc.public_subnet_az2_id
+#   target_type           = var.target_type
+#   vpc_id                = module.vpc.vpc_id
+#   certificate_arn       = module.ssl_certificate.certificate_arn
+# }
 
-# create records in route53
-module "route_53" {
-  source                             = "git@github.com:mounikainfo/Project-Module.git//route-53"
-  domain_name                        = module.ssl_certificate.domain_name
-  record_name                        = var.record_name
-  application_load_balancer_dns_name = module.application_load_balancer.application_load_balancer_dns_name
-  application_load_balancer_zone_id  = module.application_load_balancer.application_load_balancer_zone_id
-}
+# # create records in route53
+# module "route_53" {
+#   source                             = "git@github.com:mounikainfo/Project-Module.git//route-53"
+#   domain_name                        = module.ssl_certificate.domain_name
+#   record_name                        = var.record_name
+#   application_load_balancer_dns_name = module.application_load_balancer.application_load_balancer_dns_name
+#   application_load_balancer_zone_id  = module.application_load_balancer.application_load_balancer_zone_id
+# }
 
-# print the website url
-output "website_url" {
-  value = join("", ["https://", var.record_name, ".", var.domain_name])
-}
+# # print the website url
+# output "website_url" {
+#   value = join("", ["https://", var.record_name, ".", var.domain_name])
+# }
 
  
 
