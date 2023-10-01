@@ -100,7 +100,8 @@ resource "aws_lb_target_group" "alb_target_group" {
   target_type = var.target_type
   port        = 80
   protocol    = "HTTP"
-  vpc_id      = var.vpc_id
+  # vpc_id      = var.vpc_id
+  vpc_id = "vpc-0beec4fda52e3e69f"
 
   health_check {
     healthy_threshold   = 5
