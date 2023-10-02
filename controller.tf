@@ -91,6 +91,18 @@ resource "helm_release" "loadbalancer_controller" {
     name  = "clusterName"
     value = var.cluster_name
   }  
+  set {
+    name = "tggroup"
+    value = "lbc-target-group"
+  }
+  # set {
+  #   name = "type"
+  #   value = "application"
+  # }
+    set {
+    name  = "controller.service.annotations.service.beta.kubernetes.io/aws-load-balancer-type"
+    value = "application"
+  }
 }
 
 
@@ -103,6 +115,9 @@ resource "aws_lb_target_group" "alb_target_group" {
   protocol    = "HTTP"
   # vpc_id      = var.vpc_id
   vpc_id = "vpc-0beec4fda52e3e69f"
+  
+
+  
 
   health_check {
     healthy_threshold   = 5
@@ -118,7 +133,7 @@ resource "aws_lb_target_group" "alb_target_group" {
 
 # # create a listener on port 80 with redirect action
 # resource "aws_lb_listener" "alb_http_listener" {
-#   load_balancer_arn = helm_release.loadbalancer_controller.name
+#   # load_balancer_arn = helm_release.loadbalancer_controller.name
 #   port              = 80
 #   protocol          = "HTTP"
 
@@ -146,8 +161,6 @@ resource "aws_lb_target_group" "alb_target_group" {
 #     target_group_arn = aws_lb_target_group.alb_target_group.arn
 #   }
 # }
-
-
 
 
 
