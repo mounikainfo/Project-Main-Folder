@@ -19,6 +19,9 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "2.23.0"
     }
+    /* provider "k8s" {
+      config_path = "~/.kube/config"  # Path to your kubeconfig file
+    } */
     helm = {
       source = "hashicorp/helm"
       version = "~> 2.5"
@@ -43,3 +46,4 @@ provider "helm" {
     # cluster_ca_certificate = "base64decode(arn:aws:iam::231299874646:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/FBD497C3C3B543A7B1E387276C02E0AE)"
   }
 }
+

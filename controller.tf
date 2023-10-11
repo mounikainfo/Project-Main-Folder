@@ -82,6 +82,7 @@ resource "helm_release" "loadbalancer_controller" {
     name  = "vpcId"
     value = var.vpc_cidr
   }
+
   set {
     name  = "region"
     value = var.region

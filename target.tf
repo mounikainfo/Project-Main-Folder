@@ -1,7 +1,3 @@
-# provider "k8s" {
-#   config_path = "~/.kube/config"  # Path to your kubeconfig file
-# }
-
 resource "k8s_elbv2_target_group_binding" "nginx" {
   metadata {
     name = "nginx"
