@@ -1,6 +1,6 @@
-/* provider "null" {
+provider "null" {
 
-} */
+}
 # Retrieve the IAM policy JSON using a shell command
 resource "null_resource" "json_file" {
   provisioner "local-exec" {
