@@ -19,7 +19,7 @@ module "vpc" {
   private_data_subnet_az2_cidr = var.private_data_subnet_az2_cidr
 }
 
-/* # create nat gateways
+# create nat gateways
 module "nat_gateway" {
   source                     = "git@github.com:mounikainfo/Project-Module.git//nat-gateway"
   project_name               = local.project_name
@@ -33,26 +33,26 @@ module "nat_gateway" {
   private_app_subnet_az2_id  = module.vpc.private_app_subnet_az2_id
   private_data_subnet_az2_id = module.vpc.private_data_subnet_az2_id
 }
- */
-/* # create security groups
+
+# create security groups
 module "security_group" {
   source       = "git@github.com:mounikainfo/Project-Module.git//secutity-groups"
   project_name = local.project_name
   environment  = local.environment
   vpc_id       = module.vpc.vpc_id
   ssh_ip       = var.ssh_ip
-} */
+} 
 
-# # create s3 bucket
-# module "s3_bucket" {
-#   source               = "git@github.com:mounikainfo/Project-Module.git//s3"
-#   project_name         = local.project_name
-#   env_file_bucket_name = var.env_file_bucket_name
-#   env_file_name        = var.env_file_name
-# }
+# create s3 bucket
+module "s3_bucket" {
+  source               = "git@github.com:mounikainfo/Project-Module.git//s3"
+  project_name         = local.project_name
+  env_file_bucket_name = var.env_file_bucket_name
+  env_file_name        = var.env_file_name
+}
 
 
-/* # create eks
+# create eks
 module "myeks" {
   source                    = "git@github.com:mounikainfo/Project-Module.git//eks"
   cluster_name = var.cluster_name
@@ -82,41 +82,40 @@ module "myeks" {
     aws_iam_role_policy_attachment.example-AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.example-AmazonEC2ContainerRegistryReadOnly,
   ]
-} */
+}
 
-# # request ssl certificate
-# module "ssl_certificate" {
-#   source            = "git@github.com:mounikainfo/Project-Module.git//acm"
-#   domain_name       = var.domain_name
-#   alternative_names = var.alternative_names
-# }
+# request ssl certificate
+module "ssl_certificate" {
+  source            = "git@github.com:mounikainfo/Project-Module.git//acm"
+  domain_name       = var.domain_name
+  alternative_names = var.alternative_names
+}
 
-# # create application load balancer
-# module "application_load_balancer" {
-#   source                = "git@github.com:mounikainfo/Project-Module.git//alb"
-#   project_name          = local.project_name
-#   environment           = local.environment
-#   alb_security_group_id = module.security_group.alb_security_group_id
-#   public_subnet_az1_id  = module.vpc.public_subnet_az1_id
-#   public_subnet_az2_id  = module.vpc.public_subnet_az2_id
-#   target_type           = var.target_type
-#   vpc_id                = module.vpc.vpc_id
-#   certificate_arn       = module.ssl_certificate.certificate_arn
-# }
+# create application load balancer
+module "application_load_balancer" {
+  source                = "git@github.com:mounikainfo/Project-Module.git//alb"
+  project_name          = local.project_name
+  environment           = local.environment
+  alb_security_group_id = module.security_group.alb_security_group_id
+  public_subnet_az1_id  = module.vpc.public_subnet_az1_id
+  public_subnet_az2_id  = module.vpc.public_subnet_az2_id
+  target_type           = var.target_type
+  vpc_id                = module.vpc.vpc_id
+  certificate_arn       = module.ssl_certificate.certificate_arn
+}
 
-# # create records in route53
-# module "route_53" {
-#   source                             = "git@github.com:mounikainfo/Project-Module.git//route-53"
-#   domain_name                        = module.ssl_certificate.domain_name
-#   record_name                        = var.record_name
-#   application_load_balancer_dns_name = module.application_load_balancer.application_load_balancer_dns_name
-#   application_load_balancer_zone_id  = module.application_load_balancer.application_load_balancer_zone_id
-# }
+# create records in route53
+module "route_53" {
+  source                             = "git@github.com:mounikainfo/Project-Module.git//route-53"
+  domain_name                        = module.ssl_certificate.domain_name
+  record_name                        = var.record_name
+  application_load_balancer_dns_name = module.application_load_balancer.application_load_balancer_dns_name
+  application_load_balancer_zone_id  = module.application_load_balancer.application_load_balancer_zone_id
+}
 
-# # print the website url
-# output "website_url" {
-#   value = join("", ["https://", var.record_name, ".", var.domain_name])
-# }
+# print the website url
+output "website_url" {
+  value = join("", ["https://", var.record_name, ".", var.domain_name])
+}
 
  
-
