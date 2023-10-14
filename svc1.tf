@@ -13,3 +13,4 @@ resource "kubernetes_service" "service1" {
     }
   }
 }
+
