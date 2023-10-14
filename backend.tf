@@ -5,6 +5,6 @@ terraform {
     key            = "PROJECT-MAIN-FOLDER/rentzone/terraform.tfstate"
     region         = "ap-south-1"
     profile        = "mounika"
-    dynamodb_table = "terraform-table"
+    # dynamodb_table = "terraform-table"
   }
 }

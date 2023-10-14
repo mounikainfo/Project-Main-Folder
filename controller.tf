@@ -14,7 +14,7 @@ resource "aws_iam_policy" "lbc_iam_policy" {
     name        = "AWSLoadBalancerControllerIAMPolicy"
     description = "AWS Load Balancer Controller IAM policy"
     policy = file("C:/Users/anves/STA-VPC-EKS-PROJECT/Project-Main-Folder/iam_policy.json")
-} 
+}
 
 resource "aws_iam_role" "lbc_iam_role" {
   name = "AmazonEKSLoadBalancerControllerRole"
@@ -26,12 +26,12 @@ resource "aws_iam_role" "lbc_iam_role" {
         Action = "sts:AssumeRoleWithWebIdentity",
         Effect = "Allow",
         Principal = {
-          Federated = "arn:aws:iam::231299874646:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/FBD497C3C3B543A7B1E387276C02E0AE"
+          Federated = "arn:aws:iam::140382828045:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/B725096B926A9B918A603F2C95B8EC60"
         },
         Condition = {
           StringEquals = {
-            "oidc.eks.us-east-2.amazonaws.com/id/FBD497C3C3B543A7B1E387276C02E0AE:aud" = "sts.amazonaws.com",
-            "oidc.eks.us-east-2.amazonaws.com/id/FBD497C3C3B543A7B1E387276C02E0AE:sub" = "system:serviceaccount:kube-system:aws-load-balancer-controller"
+            "oidc.eks.ap-south-1.amazonaws.com/id/B725096B926A9B918A603F2C95B8EC60:aud" = "sts.amazonaws.com",
+            "oidc.eks.ap-south-1.amazonaws.com/id/B725096B926A9B918A603F2C95B8EC60:sub" = "system:serviceaccount:kube-system:aws-load-balancer-controller"
           }
         }
       }
@@ -47,7 +47,7 @@ resource "aws_iam_role_policy_attachment" "lbc_iam_role_policy_attach" {
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = "arn:aws:iam::231299874646:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/FBD497C3C3B543A7B1E387276C02E0AE"
+  name = "arn:aws:iam::140382828045:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/B725096B926A9B918A603F2C95B8EC60"
 }
 
 # Install AWS Load Balancer Controller using HELM
@@ -64,7 +64,7 @@ resource "helm_release" "loadbalancer_controller" {
   namespace = var.namespace
   set {
     name  = "image.repository"
-    value = "602401143452.dkr.ecr.us-east-2.amazonaws.com/amazon/aws-load-balancer-controller" # Changes based on Region - This is for us-east-1 Additional Reference: https://docs.aws.amazon.com/eks/latest/userguide/add-ons-images.html
+    value = "602401143452.dkr.ecr.ap-south-1.amazonaws.com/amazon/aws-load-balancer-controller" # Changes based on Region - This is for us-east-1 Additional Reference: https://docs.aws.amazon.com/eks/latest/userguide/add-ons-images.html
   }
    set {
     name  = "serviceAccount.create"
@@ -115,7 +115,7 @@ resource "aws_lb_target_group" "alb_target_group" {
   port        = 80
   protocol    = "HTTP"
   # vpc_id      = var.vpc_id
-  vpc_id = "vpc-0beec4fda52e3e69f"
+  vpc_id = "vpc-0e126f5086cbb4f90"
   
 
   
@@ -162,6 +162,3 @@ resource "aws_lb_target_group" "alb_target_group" {
 #     target_group_arn = aws_lb_target_group.alb_target_group.arn
 #   }
 # }
-
-
-
