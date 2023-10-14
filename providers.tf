@@ -37,3 +37,6 @@ provider "helm" {
   }
 }
 
+provider "null" {}
+
+

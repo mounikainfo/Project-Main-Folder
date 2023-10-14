@@ -1,4 +1,4 @@
-resource "k8s_elbv2_target_group_binding" "nginx" {
+/* resource "k8s_elbv2_target_group_binding" "nginx" {
   metadata {
     name = "nginx"
   }
@@ -11,3 +11,4 @@ resource "k8s_elbv2_target_group_binding" "nginx" {
     }
   }
 }
+ */
