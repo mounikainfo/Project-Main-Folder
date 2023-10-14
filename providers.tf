@@ -44,12 +44,12 @@ provider "kubernetes" {
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config" 
-    # cluster_ca_certificate = "base64decode(arn:aws:iam::301167228985:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/04BDBBF84E9028F8613F98CEF91B89CC)"
+    cluster_ca_certificate = "base64decode(arn:aws:iam::140382828045:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/B725096B926A9B918A603F2C95B8EC60)"
   }
 }
 
-# provider "ingress" {
-#   kubernetes {
-#     config_path = "~/.kube/config"  # Path to your Kubernetes config file
-#   }
-# }
+provider "ingress" {
+  kubernetes {
+    config_path = "~/.kube/config"  # Path to your Kubernetes config file
+  }
+}

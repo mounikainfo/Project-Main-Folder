@@ -7,7 +7,7 @@ resource "k8s_elbv2_target_group_binding" "nginx" {
     service_ref {
       name              = "nginx"
       port              = 8080
-      target_group_arn = "arn:aws:elasticloadbalancing:us-east-2:231299874646:targetgroup/lbc-target-group/5dd10cc229a9f93d"
+      target_group_arn = "arn:aws:elasticloadbalancing:ap-south-1:140382828045:targetgroup/lbc-target-group/ccfb7df6c3bea597"
     }
   }
 }
