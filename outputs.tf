@@ -29,19 +29,20 @@ output "lbc_iam_policy" {
   value = aws_iam_policy.lbc_iam_policy.arn
 }
 
-output "lbc_helm_metadata" {
+/* output "lbc_helm_metadata" {
   value       = helm_release.loadbalancer_controller.metadata
 }
-
+ */
 output "identity"  { 
   value = module.myeks.identity
 }
 
-output "LoadBalancer_name" {
+/* output "LoadBalancer_name" {
   value = helm_release.loadbalancer_controller.name
-}
+} */
 
 
-output "alb_target_group_arn" {
+/* output "alb_target_group_arn" {
   value = aws_lb_target_group.alb_target_group.arn
 }
+ */

@@ -7,7 +7,7 @@ resource "kubernetes_deployment" "deployment1" {
   }
 
   spec {
-    replicas = 1
+    replicas = 2
 
     selector {
       match_labels = {

@@ -11,7 +11,7 @@ resource "null_resource" "json_file" {
  */
 # Parse the JSON and create the IAM policy
 resource "aws_iam_policy" "lbc_iam_policy" {
-  depends_on = [null_resource.json_file]
+  # depends_on = [null_resource.json_file]
   name        = "AWSLoadBalancerControllerIAMPolicy"
   description = "AWS Load Balancer Controller IAM policy"
   policy = file("C:/Users/anves/STA-VPC-EKS-PROJECT/Project-Main-Folder/iam_policy.json")
@@ -108,7 +108,7 @@ resource "helm_release" "loadbalancer_controller" {
 }
 
 
-
+/* 
 # create target group
 resource "aws_lb_target_group" "alb_target_group" {
   name        = "lbc-target-group"
@@ -132,7 +132,7 @@ resource "aws_lb_target_group" "alb_target_group" {
     unhealthy_threshold = 2
   }
 }
-
+ */
 # # create a listener on port 80 with redirect action
 # resource "aws_lb_listener" "alb_http_listener" {
 #   # load_balancer_arn = helm_release.loadbalancer_controller.name
